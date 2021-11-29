@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: DataTypes.STRING(50),
       address: DataTypes.STRING,
-      phone: DataTypes.STRING(13),
+      phone: { type: DataTypes.STRING(13), unique: true },
       gender: DataTypes.ENUM(["laki-laki", "perempuan"]),
       email: { type: DataTypes.STRING, unique: true },
       password: {
