@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       phone: DataTypes.STRING(13),
       gender: DataTypes.ENUM(["laki-laki", "perempuan"]),
-      email: DataTypes.STRING,
+      email: { type: DataTypes.STRING, unique: true },
       password: {
         type: DataTypes.STRING,
         set(value) {

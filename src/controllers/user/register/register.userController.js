@@ -15,6 +15,14 @@ const validation = [
   body("name", "address", "phone", "gender", "email", "password")
     .notEmpty()
     .withMessage("data harus terisi semua"),
+  body("phone").isLength({
+    min: 10,
+    max: 13,
+  }),
+  body("email").isEmail().normalizeEmail(),
+  body("password").isStrongPassword({
+    minLength: 8,
+  }),
 ];
 
 module.exports = { service, validation };
