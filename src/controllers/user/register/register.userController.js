@@ -15,6 +15,13 @@ const validation = [
   body("name", "address", "phone", "gender", "email", "password")
     .notEmpty()
     .withMessage("data harus terisi semua"),
+<<<<<<< HEAD
+  body("phone").isLength({
+    minLength: 10,
+    maxLength: 13,
+  }),
+  body("email").isEmail().normalizeEmail(),
+=======
   body("phone")
     .isLength({ minLength: 10, maxLength: 12 })
     .withMessage("must be at least 5 chars long"),
@@ -26,6 +33,7 @@ const validation = [
   //       }
   //     });
   //   }),
+>>>>>>> register
   body("password").isLength({
     minLength: 8,
   }),
