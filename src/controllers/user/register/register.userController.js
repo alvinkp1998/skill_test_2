@@ -15,28 +15,27 @@ const validation = [
   body("name", "address", "phone", "gender", "email", "password")
     .notEmpty()
     .withMessage("data harus terisi semua"),
-<<<<<<< HEAD
-  body("phone").isLength({
-    minLength: 10,
-    maxLength: 13,
-  }),
-  body("email").isEmail().normalizeEmail(),
-=======
+  body("gender")
+    .isIn(["laki-laki", "perempuan"])
+    .withMessage("Gender hanya laki-laku atau perempuan"),
   body("phone")
-    .isLength({ minLength: 10, maxLength: 12 })
-    .withMessage("must be at least 5 chars long"),
-  body("email").isEmail().normalizeEmail(),
-  //   body("email").custom((value) => {
-  //     return Users.findUserByEmail(value).then((user) => {
-  //       if (user) {
-  //         return Promise.reject("E-mail already in use");
-  //       }
-  //     });
-  //   }),
->>>>>>> register
-  body("password").isLength({
-    minLength: 8,
-  }),
+    .isLength({
+      min: 10,
+      max: 13,
+    })
+    .withMessage("Nomor Telepon minimal 10 angka dan maksimal 13 angka"),
+  body("email")
+    .isEmail()
+    .normalizeEmail()
+    .custom((value) => {
+      return Users.findOne({ where: { email: value } }).then((data) => {
+        if (data) {
+          return Promise.reject("Email telah digunakan");
+        }
+      });
+    }),
+  ,
+  body("password").isLength({ min: 8 }).withMessage("Password minimal 8 huruf"),
 ];
 
 module.exports = { service, validation };
