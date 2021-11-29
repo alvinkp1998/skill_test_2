@@ -16,11 +16,11 @@ const validation = [
     .notEmpty()
     .withMessage("data harus terisi semua"),
   body("phone").isLength({
-    min: 10,
-    max: 13,
+    minLength: 10,
+    maxLength: 13,
   }),
   body("email").isEmail().normalizeEmail(),
-  body("password").isStrongPassword({
+  body("password").isLength({
     minLength: 8,
   }),
 ];
