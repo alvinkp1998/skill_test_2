@@ -15,11 +15,24 @@ const validation = [
   body("name", "address", "phone", "gender", "email", "password")
     .notEmpty()
     .withMessage("data harus terisi semua"),
+
   body("phone").isLength({
     minLength: 10,
     maxLength: 13,
   }),
   body("email").isEmail().normalizeEmail(),
+
+  body("phone")
+    .isLength({ minLength: 10, maxLength: 12 })
+    .withMessage("must be at least 5 chars long"),
+  body("email").isEmail().normalizeEmail(),
+  //   body("email").custom((value) => {
+  //     return Users.findUserByEmail(value).then((user) => {
+  //       if (user) {
+  //         return Promise.reject("E-mail already in use");
+  //       }
+  //     });
+  //   }),
   body("password").isLength({
     minLength: 8,
   }),
